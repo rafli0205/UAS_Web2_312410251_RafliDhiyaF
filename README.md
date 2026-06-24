@@ -176,8 +176,8 @@ Sesuai ketentuan tugas
 Tambahkan gambar ke folder `docs/` atau sesuai preferensi kamu, lalu referensikan di sini:
 
 1. **Skema Relasi Tabel Database**  
-   - File: `<img width="1475" height="267" alt="image" src="https://github.com/user-attachments/assets/ed54513f-5e3c-4076-ad6d-f4f97913092d" />
-`  
+   - File: <img width="1509" height="298" alt="image" src="https://github.com/user-attachments/assets/91be5642-c7af-44ec-9e5e-b027361e5759" />
+
    - Sumber: screenshot dari phpMyAdmin / diagram desain database.
 
 2. **Screenshot API Error 401 di Postman**  
@@ -186,22 +186,23 @@ Tambahkan gambar ke folder `docs/` atau sesuai preferensi kamu, lalu referensika
    - Deskripsi: uji endpoint `POST /barang` tanpa Bearer Token sehingga mendapat respon 401 Unauthorized. 
 
 3. **Halaman Login**  
-   - File: `<img width="1916" height="939" alt="image" src="https://github.com/user-attachments/assets/bf5497b1-270b-4d0d-b40d-eb4c9da94ca2" />
-`
+   - File: <img width="1914" height="946" alt="Screenshot 2026-06-24 060404" src="https://github.com/user-attachments/assets/fb9d042c-f182-4c3d-b783-7a4f549fef92" />
+
 
 4. **Halaman Dashboard Admin**  
-   - File: `<img width="1919" height="945" alt="image" src="https://github.com/user-attachments/assets/0e614c92-3b72-4344-8130-d6dc5ab2aaec" />
-`
+   - File: <img width="1917" height="947" alt="Screenshot 2026-06-24 060430" src="https://github.com/user-attachments/assets/d451ba5e-88bd-4f40-9763-d0d2fd061718" />
+
 
 5. **Form Modal Tambah/Edit Data**  
-   - File: `<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/053d0c38-cf03-47fb-89c2-ab1f4b1b2d7f" />
-`
-`<img width="1595" height="808" alt="image" src="https://github.com/user-attachments/assets/ab4a8c61-c239-4ceb-a330-f74280ab753f" />
-`
+   - File: <img width="1919" height="957" alt="Screenshot 2026-06-24 060459" src="https://github.com/user-attachments/assets/728a7bf2-c51a-4bbd-a593-6c19c118bcbd" />
+   - <img width="1919" height="970" alt="Screenshot 2026-06-24 060533" src="https://github.com/user-attachments/assets/6b17bd25-54ef-441e-b059-92fe1447caba" />
+
+
 
 6. **Tabel Data Barang/Kategori**  
-   - File: `<img width="1595" height="808" alt="image" src="https://github.com/user-attachments/assets/d5af8935-e60e-4e12-9e03-ec981748d0cb" />
-`
+   - File: <img width="1604" height="821" alt="Screenshot 2026-06-24 061106" src="https://github.com/user-attachments/assets/76cdc8f0-e276-49a9-a1dd-a6211bb5fa28" />
+
+   
 
 
 ```markdown
