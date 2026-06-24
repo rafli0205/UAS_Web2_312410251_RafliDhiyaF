@@ -1,4 +1,4 @@
-# InventoriKu – Sistem Manajemen Inventaris Barang  
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2b1380cf-423f-4b04-bfbb-c47caf4442d2" /># InventoriKu – Sistem Manajemen Inventaris Barang  
 UAS Pemrograman Web 2 
 Nama : Rafli Dhiya Fadhaly
 NIM : 312410251
@@ -69,8 +69,8 @@ Aplikasi ini menggunakan minimal **3 tabel yang saling berelasi**:
 - `barang` – menyimpan data barang dan memiliki kolom `id_kategori` sebagai foreign key ke tabel `kategori`.
 
 **Screenshot skema relasi database:**  
-_(<img width="1452" height="282" alt="image" src="https://github.com/user-attachments/assets/77662a20-0d49-4f06-b1d4-97fc0c27214b" />
-)_
+<img width="1475" height="267" alt="image" src="https://github.com/user-attachments/assets/8866a1d6-5423-4733-9394-ad9ca649e35a" />
+
 
 ```markdown
 
@@ -174,31 +174,33 @@ Sesuai ketentuan tugas
 Tambahkan gambar ke folder `docs/` atau sesuai preferensi kamu, lalu referensikan di sini:
 
 1. **Skema Relasi Tabel Database**  
-   - File: `<img width="1553" height="891" alt="image" src="https://github.com/user-attachments/assets/367a906f-ca35-4715-8bf1-1554a19a0642" />
+   - File: `<img width="1475" height="267" alt="image" src="https://github.com/user-attachments/assets/ed54513f-5e3c-4076-ad6d-f4f97913092d" />
 `  
    - Sumber: screenshot dari phpMyAdmin / diagram desain database.
 
 2. **Screenshot API Error 401 di Postman**  
-   - File: `docs/postman-401.png`  
+   - File: <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/46141582-498f-4122-9bbb-aba7205b7c1b" />
+ 
    - Deskripsi: uji endpoint `POST /barang` tanpa Bearer Token sehingga mendapat respon 401 Unauthorized. 
 
 3. **Halaman Login**  
-   - File: `<img width="1914" height="946" alt="image" src="https://github.com/user-attachments/assets/64fb6688-7c37-42ba-9f53-5abcda5da9ab" />
+   - File: `<img width="1916" height="939" alt="image" src="https://github.com/user-attachments/assets/bf5497b1-270b-4d0d-b40d-eb4c9da94ca2" />
 `
 
 4. **Halaman Dashboard Admin**  
-   - File: `<img width="1917" height="947" alt="image" src="https://github.com/user-attachments/assets/a1445252-2634-41f2-8e85-7e18cbabb34c" />
+   - File: `<img width="1919" height="945" alt="image" src="https://github.com/user-attachments/assets/0e614c92-3b72-4344-8130-d6dc5ab2aaec" />
 `
 
 5. **Form Modal Tambah/Edit Data**  
-   - File: `<img width="1919" height="957" alt="image" src="https://github.com/user-attachments/assets/29e8c719-e078-4cef-bb95-570943158289" />
+   - File: `<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/053d0c38-cf03-47fb-89c2-ab1f4b1b2d7f" />
 `
-`<img width="1919" height="970" alt="image" src="https://github.com/user-attachments/assets/88b1dbb6-9d01-4d91-8c3f-1e743d37f5b2" />
+`<img width="1595" height="808" alt="image" src="https://github.com/user-attachments/assets/ab4a8c61-c239-4ceb-a330-f74280ab753f" />
 `
 
 6. **Tabel Data Barang/Kategori**  
-   - File: `<img width="1604" height="821" alt="image" src="https://github.com/user-attachments/assets/55f30004-5969-44a0-be09-195540e97019" />
+   - File: `<img width="1595" height="808" alt="image" src="https://github.com/user-attachments/assets/d5af8935-e60e-4e12-9e03-ec981748d0cb" />
 `
+
 
 ```markdown
 
