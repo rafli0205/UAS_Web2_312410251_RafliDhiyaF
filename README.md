@@ -1,6 +1,8 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2b1380cf-423f-4b04-bfbb-c47caf4442d2" /># InventoriKu – Sistem Manajemen Inventaris Barang  
+# InventoriKu – Sistem Manajemen Inventaris Barang  
 UAS Pemrograman Web 2 
+
 Nama : Rafli Dhiya Fadhaly
+
 NIM : 312410251
 
 ## 1. Deskripsi Proyek
