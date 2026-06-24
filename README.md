@@ -1,1 +1,271 @@
-# UAS_Web2_312410251_RafliDhiyaF
+# InventoriKu – Sistem Manajemen Inventaris Barang  
+UAS Pemrograman Web 2 
+Nama : Rafli Dhiya Fadhaly
+NIM : 312410251
+
+## 1. Deskripsi Proyek
+
+InventoriKu adalah aplikasi **Sistem Manajemen Inventaris Barang (E-Inventory)** yang digunakan untuk mengelola data barang dan kategori secara terpusat.  
+Aplikasi ini dibangun dengan **arsitektur terpisah (decoupled)** antara backend dan frontend, sehingga komunikasi data dilakukan sepenuhnya melalui RESTful API.
+
+Fitur utama yang disediakan:
+- Manajemen data kategori barang.
+- Manajemen data barang (nama, kategori, stok, dll).
+- Modul otentikasi admin berbasis token.
+- Dashboard ringkasan total barang dan kategori.
+- Proteksi akses untuk halaman admin (hanya bisa diakses setelah login).
+
+---
+
+## 2. Teknologi yang Digunakan
+
+Proyek ini menggunakan ekosistem teknologi sesuai spesifikasi mata kuliah: 
+
+- **Backend**  
+  - PHP Framework: **CodeIgniter 4** (CI4) sebagai **RESTful API Server** (Resource Controller).  
+  - Database: **MySQL / MariaDB**.  
+  - Keamanan:
+    - Filter Auth untuk proteksi endpoint `POST`, `PUT`, `DELETE` dengan **Authorization: Bearer Token**.  
+    - Filter CORS global untuk mengizinkan request lintas origin dari frontend. 
+
+- **Frontend**  
+  - Framework: **Vue.js 3** dengan **Vue Router** berbasis CDN (Single Page Application / SPA).  
+  - HTTP Client: **Axios** untuk request asynchronous ke backend API. 
+  - UI Framework: **TailwindCSS** via CDN untuk desain utility-first yang responsif dan modern. 
+
+---
+
+## 3. Struktur Repository
+
+Repositori ini dibuat dengan format: `UAS_Web2_312410251_RafliDhiyaF`. 
+
+Struktur folder utama:
+
+```text
+`UAS_Web2_312410251_RafliDhiyaF/
+├─ backend-api/      # Project CodeIgniter 4 (RESTful API)
+│  ├─ app/
+│  ├─ public/
+│  └─ ...
+├─ frontend-spa/     # SPA Vue 3 + TailwindCSS
+│   ├─ index.html
+│   └─ components/
+│      ├─ Home.js
+│      ├─ Login.js
+│      ├─ Dashboard.js
+│      └─ Barang.js
+```
+
+- Folder **`backend-api/`** berisi seluruh konfigurasi CI4, controller resource (users, kategori, barang), filter auth & CORS, dan file public untuk menjalankan server API.  
+- Folder **`frontend-spa/`** berisi entry `index.html` yang memuat CDN Vue, Vue Router, Axios, Tailwind, serta komponen‑komponen modular untuk halaman SPA. 
+
+---
+
+## 4. Desain Database & Relasi
+
+Aplikasi ini menggunakan minimal **3 tabel yang saling berelasi**: 
+- `users` – menyimpan akun admin (username, password, dll).  
+- `kategori` – menyimpan kategori barang.  
+- `barang` – menyimpan data barang dan memiliki kolom `id_kategori` sebagai foreign key ke tabel `kategori`.
+
+**Screenshot skema relasi database:**  
+_(<img width="1452" height="282" alt="image" src="https://github.com/user-attachments/assets/77662a20-0d49-4f06-b1d4-97fc0c27214b" />
+)_
+
+```markdown
+
+```
+
+---
+
+## 5. Endpoint RESTful API (Ringkasan)
+
+Backend menggunakan Resource Controller CI4 untuk menyediakan endpoint CRUD. 
+
+Contoh endpoint utama:
+
+- **Auth**
+  - `POST /login` – login admin, mengembalikan token.
+  - `POST /register` – registrasi admin baru (opsional, jika diaktifkan).
+
+- **Kategori**
+  - `GET /kategori` – list semua kategori.
+  - `GET /kategori/{id}` – detail kategori.
+  - `POST /kategori` – tambah kategori (butuh Bearer Token).
+  - `PUT /kategori/{id}` – update kategori (butuh Bearer Token).
+  - `DELETE /kategori/{id}` – hapus kategori (butuh Bearer Token).
+
+- **Barang**
+  - `GET /barang` – list semua barang.
+  - `GET /barang/{id}` – detail barang.
+  - `POST /barang` – tambah barang (butuh Bearer Token).
+  - `PUT /barang/{id}` – update barang (butuh Bearer Token).
+  - `DELETE /barang/{id}` – hapus barang (butuh Bearer Token).
+
+Endpoint `POST`, `PUT`, dan `DELETE` diproteksi oleh filter token (Authorization: Bearer).
+---
+
+## 6. Fitur Keamanan
+
+### 6.1 Server-Side Security (Backend)  
+
+- Menggunakan **CodeIgniter Filters** untuk memproteksi endpoint manipulasi data.  
+- Hanya request yang memiliki **Authorization: Bearer {token}** valid yang bisa mengakses `POST`, `PUT`, dan `DELETE`. 
+- Filter **CORS** diaktifkan secara global pada `Config/Filters.php` agar API menerima request dari origin frontend 
+
+### 6.2 Client-Side Security (Frontend)
+
+- Menggunakan **Vue Router Navigation Guards** dengan `meta: { requiresAuth: true }` pada rute Dashboard dan halaman admin lainnya. 
+- `router.beforeEach()` mengecek token di `localStorage` dan akan mengarahkan user ke halaman login jika belum login.
+
+---
+
+## 7. Fitur Frontend SPA
+
+### 7.1 Modul Otentikasi (Login & Logout)
+
+- Halaman **Login** dibuat sebagai komponen Vue (`Login.js`) yang mengirim request `POST /login` via Axios.
+- Response token dan status login disimpan ke `localStorage` dengan key misalnya `token` dan `isLoggedIn`.   
+- Tersedia tombol **Logout** yang menghapus token dan data login dari `localStorage`, lalu kembali ke halaman login. 
+
+### 7.2 Manajemen Komponen & Routing
+
+- Halaman dipecah menjadi komponen modular:
+  - `Home.js` – landing page / beranda publik.
+  - `Login.js` – form login admin.
+  - `Dashboard.js` – ringkasan data dan navigasi admin.
+  - `Barang.js` – manajemen data barang (tabel + form). 
+- **Vue Router** digunakan untuk perpindahan halaman tanpa reload (SPA). 
+
+### 7.3 Axios Interceptors
+
+- **Request Interceptor**:
+  - Sebelum setiap request, Axios mengambil token dari `localStorage` dan menambahkannya ke header `Authorization: Bearer {token}`. 
+- **Response Interceptor**:
+  - Jika server mengembalikan **401 Unauthorized**, interceptor akan:
+    - Menampilkan alert bahwa sesi login sudah habis.
+    - Menghapus token dari `localStorage`.
+    - Mengarahkan user kembali ke halaman login. 
+
+### 7.4 Desain UI dengan TailwindCSS
+
+- Seluruh form input, tombol, kartu ringkasan, tabel data, dan modal menggunakan class TailwindCSS.   
+- Tidak ada CSS manual tradisional; semua styling memanfaatkan utility Tailwind (padding, margin, warna, border, rounded, dll). [
+
+---
+
+## 8. Hak Akses Pengguna (User Matrix)
+
+Sesuai ketentuan tugas
+
+- **Pengunjung / Public (tanpa login)**  
+  - Hanya bisa mengakses halaman **Home / Beranda**.  
+  - Melihat informasi umum atau ringkasan total data, seperti total barang dan total kategori. 
+
+- **Administrator (wajib login)**  
+  - Mengakses halaman **Dashboard** dan modul manajemen data.  
+  - Menambahkan, mengedit, dan menghapus data kategori dan barang.  
+  - Melakukan logout untuk mengakhiri sesi. 
+
+---
+
+## 9. Screenshot yang Disertakan
+
+Tambahkan gambar ke folder `docs/` atau sesuai preferensi kamu, lalu referensikan di sini:
+
+1. **Skema Relasi Tabel Database**  
+   - File: `<img width="1553" height="891" alt="image" src="https://github.com/user-attachments/assets/367a906f-ca35-4715-8bf1-1554a19a0642" />
+`  
+   - Sumber: screenshot dari phpMyAdmin / diagram desain database.
+
+2. **Screenshot API Error 401 di Postman**  
+   - File: `docs/postman-401.png`  
+   - Deskripsi: uji endpoint `POST /barang` tanpa Bearer Token sehingga mendapat respon 401 Unauthorized. 
+
+3. **Halaman Login**  
+   - File: `<img width="1914" height="946" alt="image" src="https://github.com/user-attachments/assets/64fb6688-7c37-42ba-9f53-5abcda5da9ab" />
+`
+
+4. **Halaman Dashboard Admin**  
+   - File: `<img width="1917" height="947" alt="image" src="https://github.com/user-attachments/assets/a1445252-2634-41f2-8e85-7e18cbabb34c" />
+`
+
+5. **Form Modal Tambah/Edit Data**  
+   - File: `<img width="1919" height="957" alt="image" src="https://github.com/user-attachments/assets/29e8c719-e078-4cef-bb95-570943158289" />
+`
+`<img width="1919" height="970" alt="image" src="https://github.com/user-attachments/assets/88b1dbb6-9d01-4d91-8c3f-1e743d37f5b2" />
+`
+
+6. **Tabel Data Barang/Kategori**  
+   - File: `<img width="1604" height="821" alt="image" src="https://github.com/user-attachments/assets/55f30004-5969-44a0-be09-195540e97019" />
+`
+
+```markdown
+
+
+
+
+```
+
+---
+
+## 10. Cara Menjalankan Proyek
+
+### 10.1 Persiapan Database
+
+1. Buat database baru, misalnya: `inventoriku_db`.  
+2. Import file SQL (misalnya `db/inventoriku.sql`) yang berisi tabel `users`, `kategori`, dan `barang`. [file:225]  
+3. Pastikan ada akun admin default, contoh:
+   - Username: `admin`
+   - Password: `admin123` (sesuai yang digunakan di video/demo).
+
+### 10.2 Menjalankan Backend (CodeIgniter 4)
+
+**Pilihan 1 – Menggunakan `php spark serve`**
+
+```bash
+cd backend-api
+php spark serve --port 8080
+```
+
+Backend akan tersedia di: `http://localhost:8080`.  
+
+**Pilihan 2 – Menggunakan XAMPP/Apache**
+
+- Letakkan folder `backend-api` di dalam `htdocs` (atau VirtualHost).  
+- Akses melalui: `http://localhost/backend-api/public`.  
+
+Konfigurasi `baseURL` di `axiosConfig.js` harus menyesuaikan:
+
+```js
+// Contoh baseURL ketika backend di Apache:
+baseURL: 'http://localhost/backend-api/public',
+```
+
+### 10.3 Menjalankan Frontend (Vue 3 + Tailwind)
+
+- Letakkan folder `frontend-spa` di dalam `htdocs`.  
+- Buka di browser:
+
+```text
+http://localhost/frontend-spa/index.html#/login
+```
+
+Atau sesuaikan dengan konfigurasi server kamu.  
+Pastikan `baseURL` Axios mengarah ke backend yang benar.
+
+---
+
+## 11. Link Demo & Video Presentasi
+
+- **Link Demo**  
+  - `http://localhost/frontend-spa/index.html#/login`
+
+- **Link Video YouTube**  
+  - `https://youtu.be/kITaIYv8fVY`  
+
+---
+
+## 12. Penutup
+
+Proyek ini dibuat sebagai pemenuhan tugas **Ujian Akhir Semester** mata kuliah **Pemrograman Web 2**, dengan fokus pada penerapan arsitektur terpisah backend–frontend, RESTful API, token-based authentication, dan SPA berbasis Vue 3 dengan TailwindCSS. [file:225]
